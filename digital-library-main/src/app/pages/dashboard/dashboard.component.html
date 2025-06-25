@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+@if (loading) {
+<h1>Loading...</h1>
+} @else {
+<h1>
+    <input type="text" [(ngModel)]='searchText'>
+</h1>
+@for (book of books; track book.id) {
+<div>
+    <h1>{{book.id + '.'}} {{book.title}}</h1>
+    <h3> {{book.author}} </h3>
+    <h4> Available : {{book.available}} </h4>
+</div>
+} @empty {
+<h1> No books available </h1>
+}
+}

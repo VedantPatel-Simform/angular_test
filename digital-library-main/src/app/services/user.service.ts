@@ -1,20 +1,32 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
 import { User } from '../../interfaces/User.interface';
+import { HttpClient } from '@angular/common/http';
+import { Book } from '../../interfaces/Book.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private userData = new BehaviorSubject<Partial<User>>({});
-  user$ = this.userData.asObservable();
+  userData!: User;
 
+  http = inject(HttpClient);
   setData(data: User) {
-    this.userData.next(data);
+    this.userData = data;
   }
 
-  getData(): Partial<User> {
-    return this.userData.value;
+  getData(): User {
+    return this.userData;
+  }
+
+  isAdmin(): boolean {
+    if (this.userData.role === 'user') return false;
+    return true;
+  }
+
+  getUserMethods() {
+    return {
+      getBooks: this.http.get<Book[]>('/books'),
+    };
   }
   constructor() {}
 }
