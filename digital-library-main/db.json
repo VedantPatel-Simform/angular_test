@@ -43,6 +43,18 @@
       "title": "The Catcher in the Rye",
       "author": "J.D. Salinger",
       "available": false
+    },
+    {
+      "availability": "yes",
+      "title": "vedant",
+      "author": "vedant",
+      "id": 6
+    },
+    {
+      "availability": "yes",
+      "title": "bhfbhsfbsfb",
+      "author": "sgsdgsg",
+      "id": 7
     }
   ]
 }

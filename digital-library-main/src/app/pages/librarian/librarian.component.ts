@@ -46,7 +46,11 @@ export class LibrarianComponent implements OnInit {
 
     this.http.post('/books', this.form.getRawValue()).subscribe((data) => {
       console.log(data);
-
+      this.loading = true;
+      this.userService.getBooks().subscribe((data) => {
+        this.bookList = data;
+        this.loading = false;
+      });
       alert('Books added successfully');
     });
   }
