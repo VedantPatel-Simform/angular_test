@@ -1,8 +1,12 @@
+<h1>
+    Hello User
+</h1>
+
 @if (loading) {
 <h1>Loading...</h1>
 } @else {
 <h1>
-    <input type="text" [(ngModel)]='searchText'>
+    Search Books by Title : <input type="text" [(ngModel)]='searchText'>
 </h1>
 @for (book of books; track book.id) {
 <div>

@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUserMethods().getBooks.subscribe((data) => {
+    this.userService.getBooks().subscribe((data) => {
       this.bookList = data;
       console.log(this.bookList);
       this.loading = false;

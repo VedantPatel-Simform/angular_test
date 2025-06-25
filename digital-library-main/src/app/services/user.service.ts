@@ -23,10 +23,8 @@ export class UserService {
     return true;
   }
 
-  getUserMethods() {
-    return {
-      getBooks: this.http.get<Book[]>('/books'),
-    };
+  getBooks() {
+    return this.http.get<Book[]>('/books');
   }
   constructor() {}
 }
