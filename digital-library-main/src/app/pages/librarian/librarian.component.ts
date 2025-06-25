@@ -1,11 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Book } from '../../../interfaces/Book.interface';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-librarian',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './librarian.component.html',
   styleUrl: './librarian.component.scss',
 })
@@ -14,14 +20,28 @@ export class LibrarianComponent implements OnInit {
   librarian = this.userService.getData();
   bookList!: Book[];
   loading = true;
-
+  form!: FormGroup;
   searchText = '';
+  fb = inject(FormBuilder);
+  constructor() {
+    this.form = this.fb.group({
+      availability: ['', Validators.required],
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.userService.getBooks().subscribe((data) => {
       this.bookList = data;
       this.loading = false;
     });
+  }
+
+  submit() {
+    if (this.form.invalid) {
+      alert('invalid form');
+    }
   }
 
   get books() {

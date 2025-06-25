@@ -18,3 +18,13 @@
 <h1> No books available </h1>
 }
 }
+
+<form [formGroup]="form">
+    Title : <input type="text" formControlName="title"> <br>
+    Author : <input type="text" formControlName="author"> <br>
+    Availability : <input type="text" formControlName="availability"> <br>
+
+    <button (click)="submit()">
+        submit
+    </button>
+</form>
