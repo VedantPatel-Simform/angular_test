@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-librarian',
@@ -37,11 +38,17 @@ export class LibrarianComponent implements OnInit {
       this.loading = false;
     });
   }
-
+  http = inject(HttpClient);
   submit() {
     if (this.form.invalid) {
       alert('invalid form');
     }
+
+    this.http.post('/books', this.form.getRawValue()).subscribe((data) => {
+      console.log(data);
+
+      alert('Books added successfully');
+    });
   }
 
   get books() {
